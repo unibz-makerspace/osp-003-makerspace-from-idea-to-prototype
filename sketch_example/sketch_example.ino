@@ -22,7 +22,7 @@ const char *song = "tetris:d=4,o=5,b=160:e6,8b,8c6,8d6,16e6,16d6,8c6,8b,a,8a,8c6
 void setup() {
   // put your setup code here, to run once:
   unsigned long timePeriodMillis = getTimePeriodMillisFromFrequency(2000/*mHz*/);
-  timer.setInterval(timePeriodMillis, onIntervalLedA);
+  timer.setInterval(10/*ms*/, onIntervalLedA);
   timer.setInterval(timePeriodMillis, onIntervalLedB);
   timer.setInterval(timePeriodMillis, onIntervalLedC);
   player.setSong(song);
@@ -35,19 +35,19 @@ void loop() {
 }
 
 void onIntervalLedA() {
-  static byte analogWriteValue = 127; // Pi/2
+  static byte analogWriteValue = 0; // Pi/2
   static char stepDirection = +1;     // UP
   doTriangleWaveformOnPin(6, &analogWriteValue, &stepDirection);
 }
 
 void onIntervalLedB() {
-  static byte analogWriteValue = 191; // Pi3/4
+  static byte analogWriteValue = 63; // Pi3/4
   static char stepDirection = +1;     // UP
   doTriangleWaveformOnPin(9, &analogWriteValue, &stepDirection);
 }
 
 void onIntervalLedC() {
-  static byte analogWriteValue = 63;  // Pi/4
+  static byte analogWriteValue = 127;  // Pi/4
   static char stepDirection = +1;     // UP
   doTriangleWaveformOnPin(10, &analogWriteValue, &stepDirection);
 }
